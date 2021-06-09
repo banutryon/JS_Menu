@@ -49,13 +49,59 @@ const menu = [
 		img: "./food5.jpg",
 		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nam illo repellendus assumenda quae. Voluptates explicabo repellendus, id fugit deleniti harum consequuntur debitis nemo doloremque, in earum, sit at necessitatibus?",
 	},
+	{
+		id: 7,
+		title: "Monster",
+		category: "shakes",
+		price: 9.99,
+		img: "./shake1.jpg",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nam illo repellendus assumenda quae. Voluptates explicabo repellendus, id fugit deleniti harum consequuntur debitis nemo doloremque, in earum, sit at necessitatibus?",
+	},
+	{
+		id: 8,
+		title: "Cookie",
+		category: "shakes",
+		price: 9.99,
+		img: "./shake2.jpg",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nam illo repellendus assumenda quae. Voluptates explicabo repellendus, id fugit deleniti harum consequuntur debitis nemo doloremque, in earum, sit at necessitatibus?",
+	},
+	{
+		id: 9,
+		title: "Rainbow Magic",
+		category: "shakes",
+		price: 9.99,
+		img: "./shake3.jpg",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nam illo repellendus assumenda quae. Voluptates explicabo repellendus, id fugit deleniti harum consequuntur debitis nemo doloremque, in earum, sit at necessitatibus?",
+	},
 ];
 
 const sectionCenter = document.querySelector(".section-center");
 
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+// load items
 window.addEventListener("DOMContentLoaded", function () {
 	displayMenuItems(menu);
 });
+
+// filter items
+
+filterBtns.forEach(function (btn) {
+	btn.addEventListener("click", function (e) {
+		const category = e.currentTarget.dataset.id;
+		const menuCategory = menu.filter(function (menuItem) {
+			if (menuItem.category === category) {
+				return menuItem.category;
+			}
+		});
+		if (category === "all") {
+			displayMenuItems(menu);
+		} else {
+			displayMenuItems(menuCategory);
+		}
+	});
+});
+
 function displayMenuItems(menuItems) {
 	let displayMenu = menuItems.map(function (item) {
 		return ` <article class="menu-item">
